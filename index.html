@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Senja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style/style.css" />
+    <script src="./src/js/script.js" defer></script>
+  </head>
+  <body>
+    <header class="navbar">
+      <nav class="nav-inner" aria-label="Navigasi utama">
+        <a class="logo" href="#home">Kopi Senja</a>
+        <button
+          class="hamburger"
+          type="button"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="menu-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="menu" id="menu-nav">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <h1>Kopi Senja</h1>
+          <p>
+            Kopi diseduh dari pagi hingga sore, cocok untuk menemani jeda di
+            tengah hari atau obrolan setelah kerja.
+          </p>
+          <a class="button" href="#menu">Lihat Menu</a>
+        </div>
+        <a class="scroll" href="#menu" aria-label="Gulir ke menu">
+          <span class="mouse"><span class="wheel"></span></span>
+        </a>
+      </section>
+
+      <section class="section menu-section" id="menu">
+        <div class="section-inner">
+          <h2>Menu Kopi</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Espresso</h3>
+              <p>Kopi pekat dengan rasa yang kuat.</p>
+              <span>Rp 18.000</span>
+            </article>
+            <article class="card">
+              <h3>Americano</h3>
+              <p>Espresso dengan tambahan air hangat.</p>
+              <span>Rp 20.000</span>
+            </article>
+            <article class="card">
+              <h3>Kopi Susu</h3>
+              <p>Perpaduan kopi, susu, dan rasa manis ringan.</p>
+              <span>Rp 22.000</span>
+            </article>
+            <article class="card">
+              <h3>Latte</h3>
+              <p>Espresso lembut dengan susu steamed.</p>
+              <span>Rp 24.000</span>
+            </article>
+            <article class="card">
+              <h3>V60</h3>
+              <p>Kopi seduh manual dengan karakter biji pilihan.</p>
+              <span>Rp 25.000</span>
+            </article>
+            <article class="card">
+              <h3>Es Kopi Gula Aren</h3>
+              <p>Kopi dingin dengan susu dan gula aren.</p>
+              <span>Rp 23.000</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-section" id="about">
+        <div class="section-inner about">
+          <div>
+            <h2>Tentang Kami</h2>
+            <p>
+              Kopi Senja adalah kedai kecil untuk menikmati kopi tanpa
+              terburu-buru. Kami menyajikan espresso dan kopi seduh manual
+              dengan biji yang berganti mengikuti ketersediaan. Minuman dibuat
+              saat dipesan, dengan pilihan rasa yang sederhana. Mampir untuk
+              duduk sebentar atau membawa kopi dalam perjalanan.
+            </p>
+          </div>
+          <div class="hours">
+            <h3>Jam Buka</h3>
+            <p>Senin–Minggu</p>
+            <p>10.00–22.00 WIB</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-inner">
+          <h2>Kontak</h2>
+          <div class="contact-list">
+            <p>
+              <strong>Alamat</strong><br />Alam sutra Kota tanggerang selatan
+            </p>
+            <p><strong>Jam buka</strong><br />Setiap hari, 10.00–22.00 WIB</p>
+            <p>
+              <strong>WhatsApp</strong><br /><a href="tel:+6200000000000"
+                >08936736212</a
+              >
+            </p>
+            <p>
+              <strong>Instagram</strong><br /><a href="https://instagram.com/"
+                >KopiSenja</a
+              >
+            </p>
+          </div>
+        </div>
+        <footer class="footer">
+          <p>&copy; 2026 Kopi Senja</p>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
