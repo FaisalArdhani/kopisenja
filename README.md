@@ -54,7 +54,7 @@ Poppins dimuat dari Google Fonts dan peta memakai Google Maps Embed, sehingga fi
 ## Mengubah data kedai
 
 - **Menu dan harga:** ubah array `dataMenu` di `src/js/script.js`.
-- **Nomor WhatsApp untuk pesanan:** ubah konstanta `nomorWhatsApp` di `src/js/script.js` dengan kode negara tanpa tanda `+` atau spasi. Nomor yang sekarang dikonfigurasi adalah `628936736212`.
+- **Nomor WhatsApp untuk pesanan:** ubah konstanta `nomorWhatsApp` di `src/js/script.js` dengan kode negara tanpa tanda `+` atau spasi. Nomor yang sekarang dikonfigurasi adalah `6289669326628`.
 - **Informasi kontak yang ditampilkan:** ubah alamat, nomor WhatsApp, Instagram, dan jam buka di bagian `id="contact"` dalam `index.html`.
 - **Lokasi peta:** ubah alamat pada URL iframe Google Maps di bagian Contact pada `index.html`.
 - **Gambar hero:** ganti file `src/asset/coffe.jpeg` atau sesuaikan path gambar di `src/style/style.css`.

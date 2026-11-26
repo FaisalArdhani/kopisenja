@@ -26,7 +26,7 @@ const pesanErrorMeja = document.querySelector("#pesan-error-meja");
 const pesanErrorNama = document.querySelector("#pesan-error-nama");
 const tombolDineIn = document.querySelector("#pilih-dinein");
 const tombolTakeaway = document.querySelector("#pilih-takeaway");
-const nomorWhatsApp = "628936736212";
+const nomorWhatsApp = "6289669326628";
 
 // BARU: data menu kedai
 const dataMenu = [
