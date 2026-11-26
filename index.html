@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- BARU: deskripsi dan favicon -->
+    <meta
+      name="description"
+      content="Kopi Senja menyajikan kopi seduh dan minuman kopi di Alam Sutra, Tangerang Selatan."
+    />
     <title>Kopi Senja</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='6' fill='%2328190f'/%3E%3Cpath d='M9 15h19v10a8 8 0 0 1-8 8h-3a8 8 0 0 1-8-8zm19 3h3a4 4 0 0 1 0 8h-3' fill='none' stroke='%23e0a96d' stroke-width='3'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,29 +26,143 @@
     <header class="navbar">
       <nav class="nav-inner" aria-label="Navigasi utama">
         <a class="logo" href="#home">Kopi Senja</a>
-        <button
-          class="hamburger"
-          type="button"
-          aria-label="Buka menu"
-          aria-expanded="false"
-          aria-controls="menu-nav"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="menu" id="menu-nav">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <!-- BARU: kontrol navigasi dan keranjang -->
+        <div class="nav-controls">
+          <ul class="menu" id="menu-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <button
+            class="tombol-keranjang"
+            id="buka-keranjang"
+            type="button"
+            aria-label="Buka keranjang"
+            aria-controls="panel-keranjang"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L22 8H6" />
+              <circle cx="10" cy="21" r="1" />
+              <circle cx="18" cy="21" r="1" />
+            </svg>
+            <span>Keranjang</span>
+            <span class="jumlah-keranjang" id="jumlah-keranjang" aria-live="polite">0</span>
+          </button>
+          <button
+            class="hamburger"
+            type="button"
+            aria-label="Buka menu"
+            aria-expanded="false"
+            aria-controls="menu-nav"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </nav>
     </header>
 
+    <!-- BARU: drawer keranjang dan lapisan penutup -->
+    <button class="lapisan-keranjang" id="lapisan-keranjang" type="button" aria-label="Tutup keranjang" hidden></button>
+    <aside class="panel-keranjang" id="panel-keranjang" aria-label="Keranjang pesanan" aria-hidden="true" inert>
+      <div class="kepala-keranjang">
+        <h2>Keranjang</h2>
+        <button class="tutup-keranjang" id="tutup-keranjang" type="button" aria-label="Tutup keranjang">&times;</button>
+      </div>
+      <!-- BARU: aturan mode pesanan untuk satu keranjang -->
+      <p class="jenis-keranjang" id="jenis-keranjang"></p>
+      <div class="isi-keranjang" id="isi-keranjang" aria-live="polite"></div>
+      <div class="ringkasan-keranjang">
+        <p class="total-keranjang">Total <strong id="total-keranjang">Rp 0</strong></p>
+        <button class="tombol-pesan" id="tombol-pesan" type="button" disabled>
+          Pesan via WhatsApp
+        </button>
+        <!-- BARU: status setelah draft pesanan dibuka -->
+        <p class="status-pesanan" id="status-pesanan" role="status" aria-live="polite"></p>
+      </div>
+    </aside>
+
+    <!-- BARU: pilihan dine-in atau takeaway -->
+    <dialog class="dialog-meja" id="dialog-jenis" aria-labelledby="judul-dialog-jenis">
+      <div class="form-meja">
+        <p class="label-dialog">PESANAN KOPI SENJA</p>
+        <h2 id="judul-dialog-jenis">Pilih jenis pesanan</h2>
+        <p class="deskripsi-dialog" id="deskripsi-dialog-jenis">
+          Pilih cara menikmati pesanan Anda.
+        </p>
+        <div class="pilihan-jenis">
+          <button class="pilihan-jenis-tombol" id="pilih-dinein" type="button">
+            <strong>Dine-in</strong>
+            <span>Makan di tempat dan pilih nomor meja.</span>
+          </button>
+          <button class="pilihan-jenis-tombol" id="pilih-takeaway" type="button">
+            <strong>Takeaway</strong>
+            <span>Bawa pulang, tanpa nomor meja.</span>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- BARU: dialog nama untuk pesanan takeaway -->
+    <dialog class="dialog-meja" id="dialog-nama" aria-labelledby="judul-dialog-nama">
+      <form class="form-meja" id="form-nama" novalidate>
+        <p class="label-dialog">PESANAN TAKEAWAY</p>
+        <h2 id="judul-dialog-nama">Atas nama siapa?</h2>
+        <p class="deskripsi-dialog" id="deskripsi-dialog-nama">
+          Masukkan nama untuk menandai pesanan yang dibawa pulang.
+        </p>
+        <label for="nama-pemesan">Nama pemesan</label>
+        <input
+          id="nama-pemesan"
+          name="nama-pemesan"
+          type="text"
+          maxlength="60"
+          autocomplete="name"
+          placeholder="Contoh: Faisal"
+          required
+        />
+        <p class="pesan-error-meja" id="pesan-error-nama" role="alert"></p>
+        <div class="aksi-dialog-meja">
+          <button class="batal-meja" id="batal-nama" type="button">Batal</button>
+          <button class="konfirmasi-meja" type="submit">Lanjutkan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- BARU: dialog nomor meja untuk pesanan dine-in -->
+    <dialog class="dialog-meja" id="dialog-meja" aria-labelledby="judul-dialog-meja">
+      <form class="form-meja" id="form-meja" novalidate>
+        <p class="label-dialog">PESANAN KOPI SENJA</p>
+        <h2 id="judul-dialog-meja">Pilih nomor meja</h2>
+        <p class="deskripsi-dialog" id="deskripsi-dialog-meja">
+          Masukkan nomor meja untuk pesanan Anda.
+        </p>
+        <label for="nomor-meja">Nomor meja</label>
+        <input
+          id="nomor-meja"
+          name="nomor-meja"
+          type="number"
+          min="1"
+          step="1"
+          inputmode="numeric"
+          placeholder="Contoh: 4"
+          required
+        />
+        <p class="pesan-error-meja" id="pesan-error-meja" role="alert"></p>
+        <div class="aksi-dialog-meja">
+          <button class="batal-meja" id="batal-meja" type="button">Batal</button>
+          <button class="konfirmasi-meja" type="submit">Lanjutkan</button>
+        </div>
+      </form>
+    </dialog>
+
     <main>
       <section class="hero" id="home">
-        <div class="hero-content">
+        <!-- BARU: isi hero ikut animasi scroll -->
+        <div class="hero-content animasi-scroll">
           <h1>Kopi Senja</h1>
           <p>
             Kopi diseduh dari pagi hingga sore, cocok untuk menemani jeda di
@@ -53,45 +176,28 @@
       </section>
 
       <section class="section menu-section" id="menu">
-        <div class="section-inner">
-          <h2>Menu Kopi</h2>
-          <div class="cards">
-            <article class="card">
-              <h3>Espresso</h3>
-              <p>Kopi pekat dengan rasa yang kuat.</p>
-              <span>Rp 18.000</span>
-            </article>
-            <article class="card">
-              <h3>Americano</h3>
-              <p>Espresso dengan tambahan air hangat.</p>
-              <span>Rp 20.000</span>
-            </article>
-            <article class="card">
-              <h3>Kopi Susu</h3>
-              <p>Perpaduan kopi, susu, dan rasa manis ringan.</p>
-              <span>Rp 22.000</span>
-            </article>
-            <article class="card">
-              <h3>Latte</h3>
-              <p>Espresso lembut dengan susu steamed.</p>
-              <span>Rp 24.000</span>
-            </article>
-            <article class="card">
-              <h3>V60</h3>
-              <p>Kopi seduh manual dengan karakter biji pilihan.</p>
-              <span>Rp 25.000</span>
-            </article>
-            <article class="card">
-              <h3>Es Kopi Gula Aren</h3>
-              <p>Kopi dingin dengan susu dan gula aren.</p>
-              <span>Rp 23.000</span>
-            </article>
+        <div class="section-inner animasi-scroll">
+          <h2>Menu Kopi &amp; Camilan</h2>
+          <!-- BARU: kategori dan kartu diisi dari JavaScript -->
+          <div class="filter-menu" id="filter-menu" aria-label="Filter kategori menu">
+            <button class="filter-tombol aktif" type="button" data-kategori="Semua" aria-pressed="true">Semua</button>
+            <button class="filter-tombol" type="button" data-kategori="Espresso Based" aria-pressed="false">Espresso Based</button>
+            <button class="filter-tombol" type="button" data-kategori="Susu" aria-pressed="false">Susu</button>
+            <button class="filter-tombol" type="button" data-kategori="Manual Brew" aria-pressed="false">Manual Brew</button>
+            <!-- BARU: filter makanan pendamping -->
+            <button class="filter-tombol" type="button" data-kategori="Makanan" aria-pressed="false">Makanan</button>
           </div>
+          <!-- BARU: aturan mode berlaku untuk satu keranjang -->
+          <p class="petunjuk-pesanan">
+            Pilih Dine-in atau Takeaway saat menambahkan item pertama. Item berikutnya mengikuti pilihan tersebut dan, untuk Dine-in, nomor meja yang sama.
+          </p>
+          <div class="cards" id="daftar-menu"></div>
         </div>
       </section>
 
       <section class="section about-section" id="about">
-        <div class="section-inner about">
+        <!-- BARU: konten about ikut animasi scroll -->
+        <div class="section-inner about animasi-scroll">
           <div>
             <h2>Tentang Kami</h2>
             <p>
@@ -111,29 +217,37 @@
       </section>
 
       <section class="section contact-section" id="contact">
-        <div class="section-inner">
+        <!-- BARU: konten kontak ikut animasi scroll -->
+        <div class="section-inner animasi-scroll">
           <h2>Kontak</h2>
           <div class="contact-list">
-            <p>
-              <strong>Alamat</strong><br />Alam sutra Kota tanggerang selatan
-            </p>
+            <!-- BARU: alamat dan tautan WhatsApp disesuaikan -->
+            <p><strong>Alamat</strong><br />Alam Sutra, Kota Tangerang Selatan</p>
             <p><strong>Jam buka</strong><br />Setiap hari, 10.00–22.00 WIB</p>
             <p>
-              <strong>WhatsApp</strong><br /><a href="tel:+6200000000000"
-                >08936736212</a
-              >
+              <strong>WhatsApp</strong><br /><a href="https://wa.me/628936736212">+62 893-6736-3212</a>
             </p>
             <p>
-              <strong>Instagram</strong><br /><a href="https://instagram.com/"
+              <strong>Instagram</strong><br /><a href="https://instagram.com/KopiSenja"
                 >KopiSenja</a
               >
             </p>
           </div>
+          <!-- BARU: peta Alam Sutra -->
+          <iframe
+            class="peta"
+            src="https://www.google.com/maps?q=Alam%20Sutra%2C%20Tangerang%20Selatan&output=embed"
+            title="Peta Alam Sutra, Tangerang Selatan"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
         <footer class="footer">
           <p>&copy; 2026 Kopi Senja</p>
         </footer>
       </section>
     </main>
+    <!-- BARU: tombol kembali ke bagian atas -->
+    <button class="tombol-atas" id="tombol-atas" type="button" aria-label="Kembali ke atas">↑</button>
   </body>
 </html>
